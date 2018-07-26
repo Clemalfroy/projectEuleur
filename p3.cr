@@ -1,14 +1,30 @@
+require "math"
+
 def largestPrimeNumber(number)
-    actual = 2
-    highest = 0
-    while actual <= number
-        if number % actual == 0
-            highest = actual
-            number/= actual
+    if number % 2 == 0
+        number = number / 2
+        lastFactor = 2
+        while number % 2 == 0
+            lastFactor = 1
         end
-        actual += 1
     end
-    highest
+    factor = 3
+    maxFactor = Math.sqrt(number)
+    while number > 1 && factor <= maxFactor
+        if number % factor == 0
+            number /= factor
+            lastFactor = factor
+            while number % factor == 0
+                number /= factor
+            end
+        end
+        factor = factor + 2
+    end
+    if number = 1
+        lastFactor
+    else
+        number
+    end
 end
 
-puts largestPrimeNumber(600851475143 )
+puts largestPrimeNumber(1)
